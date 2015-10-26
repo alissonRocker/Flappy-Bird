@@ -30,6 +30,8 @@ public class TelaJogo extends TelaBase {
 
         initChao();
         initPassaro();
+
+        new Obstaculo(mundo, camera, null);
     }
 
     private void initChao() { chao = Util.criarCorpo(mundo, BodyDef.BodyType.StaticBody, 0, 0); }
@@ -98,10 +100,8 @@ public class TelaJogo extends TelaBase {
      * Atualiza a posição do chao para acompanhar o pássaro.
      */
     private void atualizarChao() {
-        float largura = camera.viewportWidth / Util.PIXEL_METRO;
-        Vector2 posicao = chao.getPosition();
-        posicao.x = largura / 2;
-        chao.setTransform(posicao, 0);
+        Vector2 posicao = passaro.getCorpo().getPosition(); // Pega posição do passaro.
+        chao.setTransform(posicao.x, 0, 0); // Faz o chão acompanhar o passaro.
     }
 
     /**
